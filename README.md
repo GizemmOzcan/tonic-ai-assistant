@@ -11,6 +11,10 @@ Bu proje, Samsung Innovaiton Campus kapsamında "Marka sesi asistanı" temasıyl
 AI Studio üzerinden canlı olarak deneyebilirsiniz:
 [Tonic — AI Studio](https://aistudio.google.com/apps/c021ee17-9498-4890-ae05-fe40fed2aa56?showAssistant=true&showCode=true&project=spring-2023-2024-7d161)
 
+##  Youtube Demo Sunum Videosu
+
+https://youtu.be/BwMgFIARRCY
+
 ## Nasıl Çalışır?
 
 Uygulama iki panelden oluşur:
@@ -42,7 +46,7 @@ Kullanıcı yalnızca son, denetlenmiş metni görür; ara adımlar arka planda 
 ---
 
 ## Kurulum ve Çalıştırma
-
+Not: dosyalar içerisinde prompt da bulunmaktadır. İncelenmesi için.
 **Gereksinimler:** Node.js
 
 ```bash
