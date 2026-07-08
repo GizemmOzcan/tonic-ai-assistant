@@ -38,6 +38,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<"visual" | "telemetry">("visual");
   const [copySuccess, setCopySuccess] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [isQuotaLimited, setIsQuotaLimited] = useState(false);
   
   // Animated wave frequencies state
   const [waveHeights, setWaveHeights] = useState<number[]>([15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]);
@@ -121,12 +122,18 @@ export default function App() {
         body: JSON.stringify({ brandName, sampleSentence })
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        throw new Error("Marka analizi servisine bağlanılamadı.");
+        throw new Error(data.error || "Marka analizi servisine bağlanılamadı.");
       }
 
-      const data = await res.json();
-      setBrandProfile(data.analysis);
+      setBrandProfile(data.analysis || "");
+      if (data.quotaLimited) {
+        setIsQuotaLimited(true);
+      } else {
+        setIsQuotaLimited(false);
+      }
       
       // Auto speech response if enabled
       if (ttsEnabled) {
@@ -135,7 +142,7 @@ export default function App() {
 
     } catch (err: any) {
       console.error(err);
-      setApiError("Marka ses tonu profili çıkartılırken bir sorun oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
+      setApiError(err.message || "Marka ses tonu profili çıkartılırken bir sorun oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
     } finally {
       setIsAnalyzing(false);
     }
@@ -158,14 +165,20 @@ export default function App() {
         body: JSON.stringify({ brandProfile, rawText })
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        throw new Error("Dönüştürme servisi yanıt vermedi.");
+        throw new Error(data.error || "Dönüştürme servisi yanıt vermedi.");
       }
 
-      const data = await res.json();
-      setRawRewriteOutput(data.rawRewrite);
-      setSelfCheckOutput(data.selfCheck);
-      setRewrittenText(data.finalText);
+      setRawRewriteOutput(data.rawRewrite || "");
+      setSelfCheckOutput(data.selfCheck || "");
+      setRewrittenText(data.finalText || "");
+      if (data.quotaLimited) {
+        setIsQuotaLimited(true);
+      } else {
+        setIsQuotaLimited(false);
+      }
 
       if (ttsEnabled && data.finalText) {
         handleVoiceReadout(data.finalText);
@@ -173,7 +186,7 @@ export default function App() {
 
     } catch (err: any) {
       console.error(err);
-      setApiError("Metin dönüştürme zinciri çalışırken bir sorun oluştu. Lütfen tekrar deneyin.");
+      setApiError(err.message || "Metin dönüştürme zinciri çalışırken bir sorun oluştu. Lütfen tekrar deneyin.");
     } finally {
       setIsRewriting(false);
     }
@@ -338,6 +351,23 @@ export default function App() {
             <button 
               onClick={() => setApiError(null)}
               className="text-rose-400 hover:text-white font-bold text-sm leading-none"
+            >
+              ×
+            </button>
+          </div>
+        )}
+
+        {/* Quota Notice Banner */}
+        {isQuotaLimited && (
+          <div className="bg-amber-950/30 border border-amber-800/60 text-amber-200 p-4 rounded-xl flex items-start gap-3 text-xs shadow-lg animate-fade-in">
+            <Zap className="w-4 h-4 text-amber-400 shrink-0 mt-0.5 animate-pulse" />
+            <div className="flex-1">
+              <span className="font-semibold block mb-0.5">Bulut API Kotası Doldu (Yedek Motor Etkin)</span>
+              <span>Gemini API günlük kotanız geçici olarak dolmuş durumdadır. Ancak Tonic, yüksek performanslı yerel yedek ses dönüştürme motorunu (Tonic Local Core) otomatik olarak devreye alarak kesintisiz çalışmaya devam etmektedir. Tüm özellikler aktiftir!</span>
+            </div>
+            <button 
+              onClick={() => setIsQuotaLimited(false)}
+              className="text-amber-400 hover:text-white font-bold text-sm leading-none"
             >
               ×
             </button>
