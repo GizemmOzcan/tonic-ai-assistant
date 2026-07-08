@@ -1,0 +1,6 @@
+{
+  "name": "Tonic AI Assistant",
+  "description": "A high-end, minimalist AI voice assistant featuring smooth waveforms, transcript reviews, command presets, and performance analytics styled with Tonic's dark luxury theme.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
