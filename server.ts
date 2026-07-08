@@ -93,6 +93,14 @@ Yukarıdaki 5 boyutta bu markayı analiz et, aynı formatta bir Karakter Kartı 
 
   } catch (error: any) {
     console.error("Brand analysis error:", error);
+    const isQuotaError = error.status === 429 || (error.message && error.message.includes("quota"));
+    if (isQuotaError) {
+      return res.status(429).json({
+        error: "API kullanım limiti aşıldı (Quota Exceeded).",
+        details: "Gemini API ücretsiz kullanım limitiniz (20 istek/gün veya dakika limiti) doldu. Lütfen bir süre sonra tekrar deneyin veya .env dosyasından anahtarı kaldırarak simülasyon modunda test edin.",
+        quotaExceeded: true
+      });
+    }
     res.status(500).json({
       error: "Marka analizi gerçekleştirilirken bir hata oluştu.",
       details: error.message || error,
@@ -199,6 +207,14 @@ Eğer 3/5'in altındaysa, metni profile daha uygun şekilde düzelt ve SADECE so
 
   } catch (error: any) {
     console.error("Rewrite process error:", error);
+    const isQuotaError = error.status === 429 || (error.message && error.message.includes("quota"));
+    if (isQuotaError) {
+      return res.status(429).json({
+        error: "API kullanım limiti aşıldı (Quota Exceeded).",
+        details: "Gemini API ücretsiz kullanım limitiniz (20 istek/gün veya dakika limiti) doldu. Lütfen bir süre sonra tekrar deneyin veya .env dosyasından anahtarı kaldırarak simülasyon modunda test edin.",
+        quotaExceeded: true
+      });
+    }
     res.status(500).json({
       error: "Metin dönüştürme ve denetleme zinciri çalışırken bir hata oluştu.",
       details: error.message || error,
@@ -225,6 +241,6 @@ async function setupVite() {
 
 setupVite().then(() => {
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
   });
 });
