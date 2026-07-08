@@ -46,7 +46,9 @@ Kullanıcı yalnızca son, denetlenmiş metni görür; ara adımlar arka planda 
 ---
 
 ## Kurulum ve Çalıştırma
-Not: dosyalar içerisinde prompt da bulunmaktadır. İncelenmesi için.
+
+**Not: Dosyalar içerisinde prompt ve proje raporu da bulunmaktadır.**
+
 **Gereksinimler:** Node.js
 
 ```bash
