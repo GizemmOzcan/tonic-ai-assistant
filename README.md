@@ -4,23 +4,12 @@ Tonic, girdiğiniz bir markanın örnek bir cümlesinden yola çıkarak o markan
 
 Bu proje, Samsung Innovaiton Campus kapsamında "Marka sesi asistanı" temasıyla geliştirilmiştir.
 
->  Bu araçla üretilen içerik yapay zeka tarafından oluşturulmuştur; yayınlamadan önce mutlaka gözden geçirilmelidir.
-
 ---
 
 ##  Canlı Demo
 
 AI Studio üzerinden canlı olarak deneyebilirsiniz:
 [Tonic — AI Studio](https://aistudio.google.com/apps/c021ee17-9498-4890-ae05-fe40fed2aa56?showAssistant=true&showCode=true&project=spring-2023-2024-7d161)
-
-## Ekran Görüntüsü
-
-<!-- Ekran görüntünü çektikten sonra aşağıdaki satırı güncelle:
-örn. ![Tonic arayüzü](./screenshot.png)
--->
-_(Ekran görüntüsü eklenecek)_
-
----
 
 ## Nasıl Çalışır?
 
@@ -31,6 +20,14 @@ Marka adı ve o markaya ait örnek bir cümle girilir. Bu girdi, arka planda bir
 
 **2. Metni Dönüştür**
 Herhangi bir ham metin yapıştırılır, "Dönüştür" butonuna basılır. Sistem bu metni, çıkarılan marka ses tonu profiline uygun şekilde yeniden yazar ve kendi çıktısını otomatik olarak denetler.
+
+<img width="595" height="908" alt="image" src="https://github.com/user-attachments/assets/003b4403-8559-4f1e-be6a-d6dc2c8196e3" />
+<img width="810" height="636" alt="Ekran görüntüsü 2026-07-08 181256" src="https://github.com/user-attachments/assets/de75d12d-f642-4a52-9cd8-5e06c72be7fb" />
+<img width="812" height="682" alt="Ekran görüntüsü 2026-07-08 181341" src="https://github.com/user-attachments/assets/bdf7a757-23c3-4125-b1f2-91e6bb1d57dd" />
+<img width="818" height="692" alt="Ekran görüntüsü 2026-07-08 181447" src="https://github.com/user-attachments/assets/40dff92c-ccae-4f34-828e-d9902f1bd3a0" />
+<img width="798" height="660" alt="Ekran görüntüsü 2026-07-08 181503" src="https://github.com/user-attachments/assets/ee2d70ad-ce52-466c-9ab7-bfc53b0f0790" />
+<img width="786" height="642" alt="Ekran görüntüsü 2026-07-08 181521" src="https://github.com/user-attachments/assets/35440e37-248d-4109-8ca4-9ba82949ba89" />
+---
 
 ### Arka Planda Çalışan Prompt Zinciri
 
