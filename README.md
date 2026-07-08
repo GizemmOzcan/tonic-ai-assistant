@@ -93,6 +93,8 @@ Tarayıcıda `http://localhost:3000` adresini aç.
 - Kullanıcıya çıktının altında "İçerik AI ile üretilmiştir, yayın öncesi gözden geçiriniz." uyarısı gösteriliyor; araç, insan onayı yerine geçmeyecek şekilde tasarlandı.
 
 
+**Sprint Planı: Planlama (10:00-11:45) -> Prompt Yazımı ve AI Studio Testleri (11:45-14:00) -> React/Express Mimarisi ve UI Kodlaması (14:00-16:00) -> Edge-case Testleri, Hata Toleransı ve Demo Videosu (16:00-21:00).**
+
 ##  Lisans
 
 Bu proje eğitim/hackathon amaçlı geliştirilmiştir.
